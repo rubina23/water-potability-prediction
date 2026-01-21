@@ -9,12 +9,12 @@ This project includes **data preprocessing, model training, evaluation, hyperpar
 
 ```
 
-├── train.py               # Model training, evaluation, and saving
-├── app.py                 # Gradio web interface for predictions
-├── water_predict.csv      # Dataset (Water Potability dataset)
-├── water_predict_model.pkl # Saved trained pipeline
-├── requirements.txt       # Dependencies
-└── README.md              # Project documentation
+├── train.py                    # Model training, evaluation, and saving
+├── app.py                      # Gradio web interface for predictions
+├── water_predict.csv           # Dataset (Water Potability dataset)
+├── water_predict_model.pkl     # Saved trained pipeline
+├── requirements.txt            # Dependencies
+└── README.md                   # Project documentation
 
 ```
 
@@ -73,12 +73,18 @@ python app.py
 
 # 🌐 Hugging Face Deployment
 This project is deployed on Hugging Face Spaces with Gradio.
-👉 Live Demo: 
+👉 Live Demo: https://huggingface.co/spaces/rubina25/Water-Potability-Prediction
 
 ---
 
 # 📊 Example Input & Output
 
+| pH   | Hardness | Solids | Chloramines | Sulfate | Conductivity | Organic Carbon | Trihalomethanes | Turbidity | Prediction      |
+|------|----------|--------|-------------|---------|--------------|----------------|-----------------|-----------|----------------|
+| 7.0  | 200      | 15000  | 7.0         | 350     | 400          | 10             | 80              | 3.0       | ✅ Drinkable    |
+| 3.5  | 100      | 25000  | 2.0         | 150     | 200          | 20             | 20              | 5.0       | ❌ Not Drinkable |
+| 8.2  | 180      | 12000  | 6.5         | 400     | 450          | 8              | 90              | 2.5       | ✅ Drinkable    |
+| 4.0  | 90       | 30000  | 1.5         | 100     | 150          | 25             | 15              | 6.0       | ❌ Not Drinkable |
 
 
 # 🛠️ Tech Stack
@@ -106,5 +112,6 @@ This project is deployed on Hugging Face Spaces with Gradio.
 
 # 👨‍💻 Author
 
-Developed by **Rubina Begum** ✨
+Developed by **Rubina Begum** 
+
 Feel free to connect and explore more projects!
