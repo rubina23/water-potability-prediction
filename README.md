@@ -81,10 +81,10 @@ This project is deployed on Hugging Face Spaces with Gradio.
 
 | pH   | Hardness | Solids | Chloramines | Sulfate | Conductivity | Organic Carbon | Trihalomethanes | Turbidity | Prediction      |
 |------|----------|--------|-------------|---------|--------------|----------------|-----------------|-----------|----------------|
-| 7.0  | 200      | 15000  | 7.0         | 350     | 400          | 10             | 80              | 3.0       | ✅ Drinkable    |
-| 3.5  | 100      | 25000  | 2.0         | 150     | 200          | 20             | 20              | 5.0       | ❌ Not Drinkable |
-| 8.2  | 180      | 12000  | 6.5         | 400     | 450          | 8              | 90              | 2.5       | ✅ Drinkable    |
-| 4.0  | 90       | 30000  | 1.5         | 100     | 150          | 25             | 15              | 6.0       | ❌ Not Drinkable |
+| 7.0  | 200      | 15000  | 7.0         | 350     | 400          | 10             | 80              | 3.0       | ❌ Not Drinkable|
+| 3.5  | 100      | 25000  | 2.0         | 150     | 200          | 20             | 20              | 5.0       | ✅ Drinkable   |
+| 8.2  | 180      | 12000  | 6.5         | 400     | 450          | 8              | 90              | 2.5       | ❌ Not Drinkable|
+| 4.0  | 90       | 30000  | 1.5         | 100     | 150          | 25             | 15              | 6.0       | ✅ Drinkable |
 
 
 # 🛠️ Tech Stack
