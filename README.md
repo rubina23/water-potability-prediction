@@ -73,6 +73,7 @@ python app.py
 
 # 🌐 Hugging Face Deployment
 This project is deployed on Hugging Face Spaces with Gradio.
+
 👉 Live Demo: https://huggingface.co/spaces/rubina25/Water-Potability-Prediction
 
 ---
