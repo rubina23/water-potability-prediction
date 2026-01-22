@@ -3,10 +3,7 @@
 
 # Steps:
 
-##**1. Data Loading (5 Marks)**
-
-# Load the chosen dataset into your environment and display the first few rows along with the shape to verify correctness.
-
+##**1. Data Loading**
 
 import pandas as pd
 import numpy as np
@@ -21,98 +18,53 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
 
 
-
 # Dataset load
 df = pd.read_csv("water_predict.csv")
 
 print(df.head())
 print(df.shape)
 
-# list(df.columns)
+## **2. Data Preprocessing**
 
-"""## **2. Data Preprocessing (10 Marks)**
-Perform and document at least 5 distinct preprocessing steps (e.g., handling missing values, encoding, scaling, outlier detection, feature engineering).
-"""
-
-# 1. Handle Missing Values
+# Handle Missing Values
 df = df.fillna(df.median())
 
-# 2. Outlier Detection & Removal (IQR method)
+# Outlier Detection & Removal (IQR method)
 Q1 = df.quantile(0.25)
 Q3 = df.quantile(0.75)
 IQR = Q3 - Q1
 df = df[~((df < (Q1 - 1.5 * IQR)) | (df > (Q3 + 1.5 * IQR))).any(axis=1)]
 
-# 3. Feature Scaling (Standardization)
+# Feature Scaling (Standardization)
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(df.drop("Potability", axis=1))
 
-# 4. Feature Engineering (e.g., Water Quality Index)
+# Feature Engineering (e.g., Water Quality Index)
 df["quality_index"] = df["ph"] * df["Hardness"] / df["Solids"]
 
-
-# 5. Train-Test Split
+# Train-Test Split
 X = df.drop("Potability", axis=1)
 y = df["Potability"]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-"""## **3. Pipeline Creation (10 Marks)**
-Construct a standard Machine Learning pipeline that integrates preprocessing and the model
-"""
+## 3. Pipeline Creation
 
 pipeline = Pipeline([
     ("scaler", StandardScaler()),
     ("model", RandomForestClassifier(random_state=42))
 ])
 
-"""## **4. Primary Model Selection (5 Marks)**
-
-Choose a suitable algorithm and justify why this specific model was selected for the dataset.    
-
-**Answer:**  Random Forest Classifier chosen because:
-
-*   Handles categorical + numerical features well.
-*   Robust to outliers and scaling issues.
-*   Provides feature importance for HR insights.
-
-## **5. Model Training (10 Marks)**
-
-Train your selected model using the training portion of your dataset.
-"""
-
+## **4. Model Training**
 # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 pipeline.fit(X_train, y_train)
 
-"""## **6. Cross-Validation (10 Marks)**
-
-Apply Cross-Validation  to assess robustness and report the average score with standard deviation.
-
-
-"""
-
+# **5. Cross-Validation**
 # Apply 5-fold cross-validation on the training set
 scores = cross_val_score(pipeline, X_train, y_train, cv=5, scoring="accuracy")
 print("CV Mean: %.3f" % scores.mean())
 print("CV Std: %.3f" % scores.std())
 
-"""## **7. Hyperparameter Tuning (10 Marks)**
-
-Optimize your model using search methods displaying both the parameters tested and the best results found.
-
-"""
-
-# 7. Hyperparameter tuning
-
-# param_grid = {
-#     'model__n_estimators': [100, 200, 300],
-#     'model__max_depth': [None, 10, 20],
-#     'model__min_samples_split': [2, 5, 10]
-# }
-# grid = GridSearchCV(pipeline, param_grid, cv=5, n_jobs=-1, verbose=2)
-# grid.fit(X_train, y_train)
-# print("Best Params:", grid.best_params_)
-# print("Best Score:", grid.best_score_)
-# from sklearn.model_selection import GridSearchCV
+## 6. Hyperparameter Tuning 
 
 param_grid = {
     "model__n_estimators": [100, 200, 300],
@@ -126,22 +78,14 @@ grid.fit(X_train, y_train)
 print("Best Params:", grid.best_params_)
 print("Best Score:", grid.best_score_)
 
-"""## **8. Best Model Selection (10 Marks)**
-
-Select  the final best-performing model based on the hyperparameter tuning results.
-
-"""
+## 7. Best Model Selection 
 
 # Select the best model from GridSearchCV
 best_model = grid.best_estimator_
 
 print("Final Best Model:", best_model)
 
-"""## **9. Model Performance Evaluation (10 Marks)**
-
-Evaluate the model on the test set and print comprehensive metrics suitable for the problem type.
-
-"""
+## 8. Model Performance Evaluation
 
 # Predict on the test set
 y_pred = best_model.predict(X_test)
@@ -150,7 +94,7 @@ print("Test Accuracy:", accuracy_score(y_test, y_pred))
 print("Classification Report:\n", classification_report(y_test, y_pred))
 print("Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
 
-"""## **Save & Load Model**"""
+## 9. **Save Model**
 
 # Save the pipeline instead of only model
 import pickle
