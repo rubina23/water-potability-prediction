@@ -1,15 +1,12 @@
 
-## **10. Web Interface with Gradio (10 Marks)**
-
-# Create a user-friendly Gradio web interface that takes user inputs and displays the prediction from your trained model.
-
+## Web Interface with Gradio
 
 import pandas as pd
 import gradio as gr
 import pickle
 
 
-# 1. Loaded saved model
+# Loaded saved model
 with open("water_predict_model.pkl", "rb") as f:
     best_model = pickle.load(f)
 
@@ -41,9 +38,3 @@ water_predict_app = gr.Interface(
 )
 
 water_predict_app.launch(share = True)
-
-
-"""## **11. Deployment to Hugging Face (10 Marks)**
-
-Hugging Face Spaces public URL: 
-"""
